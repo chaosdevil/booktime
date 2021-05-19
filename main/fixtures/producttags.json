@@ -1,0 +1,52 @@
+[
+{
+  "model": "main.producttag",
+  "pk": 1,
+  "fields": {
+    "name": "Opensource",
+    "slug": "opensource",
+    "description": "Opensource software book",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "pk": 2,
+  "fields": {
+    "name": "Science Fiction",
+    "slug": "science-fiction",
+    "description": "",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "pk": 3,
+  "fields": {
+    "name": "Drama",
+    "slug": "drama",
+    "description": "",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "pk": 4,
+  "fields": {
+    "name": "Romance",
+    "slug": "romance",
+    "description": "",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "pk": 5,
+  "fields": {
+    "name": "Novel",
+    "slug": "novel",
+    "description": "",
+    "active": true
+  }
+}
+]

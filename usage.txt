@@ -1,0 +1,3 @@
+### ---------------------------------------------------------- ###
+Solution when unable to use ./manage.py loaddata <path-of-data-in-json> :
+Just call ./manage.py dumpdata --indent 2 main.ProductTag 
