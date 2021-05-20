@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MinValueValidator
 from django.core import exceptions
+
 import logging
 
 logger = logging.getLogger(__name__)
