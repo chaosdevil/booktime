@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class ActiveManager(models.Manager):
     def active(self):
         return self.filter(active=True)
-        
+
 
 class ProductTagManager(models.Manager):
     def get_by_natural_key(self, slug):
@@ -123,6 +123,7 @@ class Address(models.Model):
                 self.country
             ]
         )
+        
 
 class Basket(models.Model):
     OPEN = 10
