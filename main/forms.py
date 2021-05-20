@@ -83,5 +83,5 @@ BasketLineFormset = inlineformset_factory(
     models.BasketLine,
     fields=('quantity', ),
     extra=0,
-    widgets={"quantity": widgets.PlusMinusNumberInput()}
+    widgets={'quantity': widgets.PlusMinusNumberInput()}
 )
