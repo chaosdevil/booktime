@@ -1,2 +1,5 @@
 .vscode
 media
+old
+backup
+db.sqlite3

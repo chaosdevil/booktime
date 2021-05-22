@@ -43,7 +43,6 @@ class Product(models.Model):
     active = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
     date_updated = models.DateTimeField(auto_now=True)
-
     objects = ActiveManager()
 
     def __str__(self):
@@ -222,7 +221,6 @@ class Order(models.Model):
 
     date_updated = models.DateTimeField(auto_now=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
 
 class OrderLine(models.Model):
     NEW = 10

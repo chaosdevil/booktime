@@ -1,0 +1,241 @@
+CREATE TABLE IF NOT EXISTS "main_address" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(60) NOT NULL, "address1" varchar(60) NOT NULL, "address2" varchar(60) NOT NULL, "zip_code" varchar(12) NOT NULL, "city" varchar(60) NOT NULL, "country" varchar(3) NOT NULL, "user_id" integer NOT NULL REFERENCES "main_user" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE INDEX "main_address_user_id_23f4b77c" ON "main_address" ("user_id");
+CREATE TABLE IF NOT EXISTS "django_migrations"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "app" varchar(255) NOT NULL,
+  "name" varchar(255) NOT NULL,
+  "applied" datetime NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "django_content_type"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "app_label" varchar(100) NOT NULL,
+  "model" varchar(100) NOT NULL
+);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type"(
+  "app_label",
+  "model"
+);
+CREATE TABLE IF NOT EXISTS "auth_group_permissions"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "group_id" integer NOT NULL REFERENCES "auth_group"("id") DEFERRABLE INITIALLY DEFERRED,
+  "permission_id" integer NOT NULL REFERENCES "auth_permission"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions"(
+  "group_id",
+  "permission_id"
+);
+CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions"(
+  "group_id"
+);
+CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions"(
+  "permission_id"
+);
+CREATE TABLE IF NOT EXISTS "auth_permission"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "content_type_id" integer NOT NULL REFERENCES "django_content_type"("id") DEFERRABLE INITIALLY DEFERRED,
+  "codename" varchar(100) NOT NULL,
+  "name" varchar(255) NOT NULL
+);
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission"(
+  "content_type_id",
+  "codename"
+);
+CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission"(
+  "content_type_id"
+);
+CREATE TABLE IF NOT EXISTS "auth_group"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(150) NOT NULL UNIQUE
+);
+CREATE TABLE IF NOT EXISTS "main_product"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(40) NOT NULL,
+  "description" text NOT NULL,
+  "price" decimal NOT NULL,
+  "slug" varchar(48) NOT NULL,
+  "active" bool NOT NULL,
+  "in_stock" bool NOT NULL,
+  "date_updated" datetime NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "main_producttag"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(40) NOT NULL,
+  "slug" varchar(48) NOT NULL,
+  "description" text NOT NULL,
+  "active" bool NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "main_productimage"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "image" varchar(100) NOT NULL,
+  "thumbnail" varchar(100) NULL,
+  "product_id" integer NOT NULL REFERENCES "main_product"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "main_product_tags"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "product_id" integer NOT NULL REFERENCES "main_product"("id") DEFERRABLE INITIALLY DEFERRED,
+  "producttag_id" integer NOT NULL REFERENCES "main_producttag"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "main_user"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "password" varchar(128) NOT NULL,
+  "last_login" datetime NULL,
+  "is_superuser" bool NOT NULL,
+  "first_name" varchar(30) NOT NULL,
+  "last_name" varchar(150) NOT NULL,
+  "is_staff" bool NOT NULL,
+  "is_active" bool NOT NULL,
+  "date_joined" datetime NOT NULL,
+  "email" varchar(254) NOT NULL UNIQUE
+);
+CREATE TABLE IF NOT EXISTS "main_user_groups"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "user_id" integer NOT NULL REFERENCES "main_user"("id") DEFERRABLE INITIALLY DEFERRED,
+  "group_id" integer NOT NULL REFERENCES "auth_group"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "main_user_user_permissions"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "user_id" integer NOT NULL REFERENCES "main_user"("id") DEFERRABLE INITIALLY DEFERRED,
+  "permission_id" integer NOT NULL REFERENCES "auth_permission"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE INDEX "main_product_slug_85058272" ON "main_product"("slug");
+CREATE INDEX "main_producttag_slug_7827f5c5" ON "main_producttag"("slug");
+CREATE INDEX "main_productimage_product_id_7c7e66ae" ON "main_productimage"(
+  "product_id"
+);
+CREATE UNIQUE INDEX "main_product_tags_product_id_producttag_id_0de451c7_uniq" ON "main_product_tags"(
+  "product_id",
+  "producttag_id"
+);
+CREATE INDEX "main_product_tags_product_id_da69435f" ON "main_product_tags"(
+  "product_id"
+);
+CREATE INDEX "main_product_tags_producttag_id_73dd5573" ON "main_product_tags"(
+  "producttag_id"
+);
+CREATE UNIQUE INDEX "main_user_groups_user_id_group_id_ae195797_uniq" ON "main_user_groups"(
+  "user_id",
+  "group_id"
+);
+CREATE INDEX "main_user_groups_user_id_df502602" ON "main_user_groups"(
+  "user_id"
+);
+CREATE INDEX "main_user_groups_group_id_a337ba62" ON "main_user_groups"(
+  "group_id"
+);
+CREATE UNIQUE INDEX "main_user_user_permissions_user_id_permission_id_96b9fadf_uniq" ON "main_user_user_permissions"(
+  "user_id",
+  "permission_id"
+);
+CREATE INDEX "main_user_user_permissions_user_id_451ce57f" ON "main_user_user_permissions"(
+  "user_id"
+);
+CREATE INDEX "main_user_user_permissions_permission_id_cd2b56a3" ON "main_user_user_permissions"(
+  "permission_id"
+);
+CREATE TABLE IF NOT EXISTS "django_admin_log"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "action_time" datetime NOT NULL,
+  "object_id" text NULL,
+  "object_repr" varchar(200) NOT NULL,
+  "change_message" text NOT NULL,
+  "content_type_id" integer NULL REFERENCES "django_content_type"("id") DEFERRABLE INITIALLY DEFERRED,
+  "user_id" integer NOT NULL REFERENCES "main_user"("id") DEFERRABLE INITIALLY DEFERRED,
+  "action_flag" smallint unsigned NOT NULL CHECK("action_flag" >= 0)
+);
+CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log"(
+  "content_type_id"
+);
+CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log"(
+  "user_id"
+);
+CREATE TABLE IF NOT EXISTS "django_session"(
+  "session_key" varchar(40) NOT NULL PRIMARY KEY,
+  "session_data" text NOT NULL,
+  "expire_date" datetime NOT NULL
+);
+CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session"(
+  "expire_date"
+);
+CREATE TABLE IF NOT EXISTS "main_address"(
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(60) NOT NULL,
+  "address1" varchar(60) NOT NULL,
+  "address2" varchar(60) NOT NULL,
+  "zip_code" varchar(12) NOT NULL,
+  "city" varchar(60) NOT NULL,
+  "country" varchar(3) NOT NULL,
+  "user_id" integer NOT NULL REFERENCES "main_user"("id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE INDEX "main_address_user_id_23f4b77c" ON "main_address"("user_id");
+/* No STAT tables available */
+auth_group                  main_product              
+auth_group_permissions      main_product_tags         
+auth_permission             main_productimage         
+django_admin_log            main_producttag           
+django_content_type         main_user                 
+django_migrations           main_user_groups          
+django_session              main_user_user_permissions
+main_address              
+.archive ...             Manage SQL archives
+.auth ON|OFF             Show authorizer callbacks
+.backup ?DB? FILE        Backup DB (default "main") to FILE
+.bail on|off             Stop after hitting an error.  Default OFF
+.binary on|off           Turn binary output on or off.  Default OFF
+.cd DIRECTORY            Change the working directory to DIRECTORY
+.changes on|off          Show number of rows changed by SQL
+.check GLOB              Fail if output since .testcase does not match
+.clone NEWDB             Clone data into NEWDB from the existing database
+.databases               List names and files of attached databases
+.dbconfig ?op? ?val?     List or change sqlite3_db_config() options
+.dbinfo ?DB?             Show status information about the database
+.dump ?TABLE? ...        Render all database content as SQL
+.echo on|off             Turn command echo on or off
+.eqp on|off|full|...     Enable or disable automatic EXPLAIN QUERY PLAN
+.excel                   Display the output of next command in a spreadsheet
+.exit ?CODE?             Exit this program with return-code CODE
+.expert                  EXPERIMENTAL. Suggest indexes for specified queries
+.filectrl CMD ...        Run various sqlite3_file_control() operations
+.fullschema ?--indent?   Show schema and the content of sqlite_stat tables
+.headers on|off          Turn display of headers on or off
+.help ?-all? ?PATTERN?   Show help text for PATTERN
+.import FILE TABLE       Import data from FILE into TABLE
+.imposter INDEX TABLE    Create imposter table TABLE on index INDEX
+.indexes ?TABLE?         Show names of indexes
+.limit ?LIMIT? ?VAL?     Display or change the value of an SQLITE_LIMIT
+.lint OPTIONS            Report potential schema issues.
+.load FILE ?ENTRY?       Load an extension library
+.log FILE|off            Turn logging on or off.  FILE can be stderr/stdout
+.mode MODE ?TABLE?       Set output mode
+.nullvalue STRING        Use STRING in place of NULL values
+.once (-e|-x|FILE)       Output for the next SQL command only to FILE
+.open ?OPTIONS? ?FILE?   Close existing database and reopen FILE
+.output ?FILE?           Send output to FILE or stdout if FILE is omitted
+.parameter CMD ...       Manage SQL parameter bindings
+.print STRING...         Print literal STRING
+.progress N              Invoke progress handler after every N opcodes
+.prompt MAIN CONTINUE    Replace the standard prompts
+.quit                    Exit this program
+.read FILE               Read input from FILE
+.recover                 Recover as much data as possible from corrupt db.
+.restore ?DB? FILE       Restore content of DB (default "main") from FILE
+.save FILE               Write in-memory database into FILE
+.scanstats on|off        Turn sqlite3_stmt_scanstatus() metrics on or off
+.schema ?PATTERN?        Show the CREATE statements matching PATTERN
+.selftest ?OPTIONS?      Run tests defined in the SELFTEST table
+.separator COL ?ROW?     Change the column and row separators
+.session ?NAME? CMD ...  Create or control sessions
+.sha3sum ...             Compute a SHA3 hash of database content
+.shell CMD ARGS...       Run CMD ARGS... in a system shell
+.show                    Show the current values for various settings
+.stats ?on|off?          Show stats or turn stats on or off
+.system CMD ARGS...      Run CMD ARGS... in a system shell
+.tables ?TABLE?          List names of tables matching LIKE pattern TABLE
+.testcase NAME           Begin redirecting output to 'testcase-out.txt'
+.testctrl CMD ...        Run various sqlite3_test_control() operations
+.timeout MS              Try opening locked tables for MS milliseconds
+.timer on|off            Turn SQL timer on or off
+.trace ?OPTIONS?         Output each SQL statement as it is run
+.vfsinfo ?AUX?           Information about the top-level VFS
+.vfslist                 List all available VFSes
+.vfsname ?AUX?           Print the name of the VFS stack
+.width NUM1 NUM2 ...     Set column widths for "column" mode

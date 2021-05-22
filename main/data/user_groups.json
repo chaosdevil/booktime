@@ -1,0 +1,32 @@
+	[
+		{
+			"model": "auth.group",
+			"fields": {
+				"name": "Employees",
+				"permissions": [
+					["add_address", "main", "address"],
+					["change_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+					["delete_address", "main", "address"],
+				]
+			}
+		},
+		{
+			"model": "auth.group",
+			"fields": {
+				"name": "Dispatcher"
+			}
+		}
+	]
