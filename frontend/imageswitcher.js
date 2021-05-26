@@ -22,22 +22,26 @@ class ImageBox extends React.Component {
 	}
 
 	render() {
-		const images = this.props.images.map((i) =>
+		const images = this.props.images.map((i) => 
 			e('div', {style: imageStyle, className: "image", key: i.image},
-			e('img', {onClick: this.click.bind(this, i),
-				width: "100", src: i.thumbnail})
+				e('img', {onClick: this.click.bind(this, i),
+					width: "100",
+					src: i.thumbnail
+				}),
 			)
 		);
 
 		return e('div', {className: "gallery"},
-				e('div', {className: "current-image"},
+			e('div', {className: "current-image"},
 				e('img', {src: this.state.currentImage.image})
-				), images);
+			), 
+			images
+		)
 	}
 }
 
-window.React = React;
-window.ReactDOM = ReactDOM;
-window.ImageBox = ImageBox;
+window.React = React
+window.ReactDOM = ReactDOM
+window.ImageBox = ImageBox
 
-module.exports = ImageBox;
+module.exports = ImageBox

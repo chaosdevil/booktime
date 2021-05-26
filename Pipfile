@@ -9,6 +9,12 @@ psycopg2 = "*"
 pillow = "*"
 psycopg2-binary = "*"
 selenium = "*"
+django-webpack-loader = "==0.7.0"
+django-extensions = "*"
+django-bundles = "*"
+pydotplus = "*"
+ipython = "*"
+werkzeug = "*"
 
 [dev-packages]
 
