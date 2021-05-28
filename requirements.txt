@@ -3,3 +3,4 @@ selenium
 pydotplus
 django-extensions
 werkzeug
+geckodriver.log
