@@ -15,6 +15,7 @@ django-bundles = "*"
 pydotplus = "*"
 ipython = "*"
 werkzeug = "*"
+factory-boy = "*"
 
 [dev-packages]
 
