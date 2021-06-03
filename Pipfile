@@ -16,6 +16,7 @@ pydotplus = "*"
 ipython = "*"
 werkzeug = "*"
 factory-boy = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 
