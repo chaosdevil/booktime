@@ -63,7 +63,7 @@ class UserAdmin(DjangoUserAdmin):
             }
         ),
         (
-            'Important dates', {'fields': ('last_date', 'date_joined')},
+            'Important dates', {'fields': ('last_login', 'date_joined')},
         ),
     )
 

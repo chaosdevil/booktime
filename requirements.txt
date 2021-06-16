@@ -4,3 +4,9 @@ pydotplus
 django-extensions
 werkzeug
 geckodriver.log
+django-widget-tweaks
+djangorestframework
+factory_boy
+django-debug-toolbar
+django-tables2
+django-filter
