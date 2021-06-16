@@ -17,6 +17,9 @@ ipython = "*"
 werkzeug = "*"
 factory-boy = "*"
 django-debug-toolbar = "*"
+django-tables2 = "*"
+django-filter = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

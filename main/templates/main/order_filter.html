@@ -5,7 +5,8 @@
 <h2>Order dashboard</h2>
 <form method="GET">
 	{{ filter.form.as_p }}
-	<input class="btn btn-primary" type="submit">
+	<input type="submit" value="Submit Query">
+	<input type="reset">
 </form>
 <p>
 	{% render_table filter.qs %}

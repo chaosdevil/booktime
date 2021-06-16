@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'django_extensions',
     'debug_toolbar',
+    'django_tables2',
+    'widget_tweaks',
     'main.apps.MainConfig',
 ]
 
@@ -197,3 +199,5 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap.html'
